@@ -78,10 +78,73 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+ <!-- Domain Search -->
+	<title>Domain Search</title>
+<style>
+  #results {
+    margin-top: 20px;
+  }
+  .available {
+    color: green;
+  }
+  .unavailable {
+    color: red;
+  }
+</style>
 </head>
 
 <body>
-        
+        <h1>Domain Availability Checker</h1>
+
+  <input type="text" id="domainInput" placeholder="Enter domain name (e.g., example.com)">
+  <button onclick="checkDomain()">Check Availability</button>
+
+  <div id="results"></div>
+
+  <script>
+    async function checkDomain() {
+      const domain = document.getElementById('domainInput').value;
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = "Checking..."; // Show loading message
+
+      try {
+        const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+        const apiUrl = `YOUR_API_ENDPOINT?domain=${domain}&apiKey=${apiKey}`; // Construct API URL
+
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        displayResults(data, resultsDiv);
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        resultsDiv.innerHTML = "An error occurred. Please try again.";
+      }
+    }
+
+    function displayResults(data, resultsDiv) {
+        resultsDiv.innerHTML = ""; // Clear loading message
+
+        if (data.available) {
+          resultsDiv.innerHTML = `<p class="available">${data.domain} is available!</p>`;
+        } else {
+          resultsDiv.innerHTML = `<p class="unavailable">${data.domain} is unavailable.</p>`;
+          if (data.suggestions && data.suggestions.length > 0) {
+            let suggestionsHTML = "<p>Suggestions:</p><ul>";
+            data.suggestions.forEach(s => {
+              suggestionsHTML += `<li>${s}</li>`;
+            });
+            suggestionsHTML += "</ul>";
+            resultsDiv.innerHTML += suggestionsHTML;
+          }
+        }
+    }
+  </script>  
     
     
     <!--Start of Tawk.to Script-->
