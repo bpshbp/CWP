@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-<!-- code to disable right click,VIEW PAGE SOURCE on html  -->
-	<script>document.addEventListener('contextmenu', event => event.preventDefault());
-	</script>	
-
+<head><script>
+document.addEventListener("DOMContentLoaded", function() {
+if (window.location.pathname === "/blog" || window.location.pathname === "/blog/") {
+window.location.href = "https://blog.cheapwebhostpro.com";
+}
+});
+</script>
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://cheapwebhostpro.com/">
@@ -77,11 +79,13 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
- 
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
         
+    
     
     <!--Start of Tawk.to Script-->
 <script type="text/javascript">
