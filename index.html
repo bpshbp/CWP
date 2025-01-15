@@ -2,7 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script>
+	
+<h1>Content you want to protect</h1>
+<p>This text is protected from right-clicking and viewing source (to some extent).</p>
+
+<head>
+<style>
+/* Optional: Style to discourage text selection */
+body {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ and Edge */
+  user-select: none; /* Standard syntax */
+}
+</style>	
+	
+	<script>
 document.addEventListener("DOMContentLoaded", function() {
 if (window.location.pathname === "/blog" || window.location.pathname === "/blog/") {
 window.location.href = "https://blog.cheapwebhostpro.com";
@@ -83,7 +97,8 @@ window.location.href = "https://blog.cheapwebhostpro.com";
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body oncontextmenu="return false" onkeydown="if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 117)) {return false;}">
+
         
     
     
