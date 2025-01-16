@@ -4,7 +4,7 @@
 
 	
 <!-- code to disable right click,VIEW PAGE SOURCE on html -->
-	<script>document.addEventListener('contextmenu', event => event.preventDefault()); </script>
+	<script> // Disable right-click document.addEventListener('contextmenu', event => event.preventDefault()); // Disable F12, Ctrl+Shift+I, Ctrl+U document.addEventListener('keydown', function(event) { if (event.keyCode == 123 || // F12 (event.ctrlKey && event.shiftKey && event.keyCode == 73) || // Ctrl+Shift+I (event.ctrlKey && event.keyCode == 85)) { // Ctrl+U event.preventDefault(); } }); </script>
 
 <head>
 <!-- code to disable right click,VIEW PAGE SOURCE on html -->
