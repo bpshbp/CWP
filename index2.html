@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NameSilo Domain Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Check Domain Availability</h1>
+    <input type="text" id="domainName" placeholder="Enter domain (e.g., example.com)" />
+    <button onclick="checkDomain()">Check Availability</button>
+    <p id="result"></p>
+
+    <script>
+        async function checkDomain() {
+            const domain = document.getElementById('domainName').value;
+            const apiKey = '090962cfcbf6da94f133'; // Replace with your NameSilo API key
+            
+            const url = `https://www.namesilo.com/api/checkRegisterAvailability?version=1&type=json&key=${apiKey}&domain=${domain}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.reply.available === "yes") {
+                    document.getElementById('result').innerText = `Domain ${domain} is available!`;
+                } else {
+                    document.getElementById('result').innerText = `Domain ${domain} is not available.`;
+                }
+            } catch (error) {
+                document.getElementById('result').innerText = "Error checking domain availability.";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
