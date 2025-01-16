@@ -1,0 +1,26 @@
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # Deploy whenever changes are pushed to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Deploy files via FTP
+      - name: Deploy to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
+        with:
+          server: ftpupload.net
+          username: if0_38115249
+          password: RDxwk4ZKh2
+          port: 21 # Default FTP port
+          local-dir: ./ # Directory to upload (adjust if necessary)
+          server-dir: /htdocs # Default directory for InfinityFree
