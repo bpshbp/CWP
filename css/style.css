@@ -6,7 +6,9 @@
     --dark: #1D2833;
 }
 
-#pricing2{display: none;}
+#pricing2 {
+  display: none;
+}
 
 .domain {
     background: url(../img/bg-domain.png) center center no-repeat;
